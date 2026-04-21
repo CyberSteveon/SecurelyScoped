@@ -1,16 +1,100 @@
-# React + Vite
+# SecurelyScoped
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A desktop security scanner built for IT teams, MSPs, and sysadmins. SecurelyScoped performs local, on-premises file scanning for secrets, vulnerabilities, and environment-specific misconfigurations — no data leaves your machine.
 
-Currently, two official plugins are available:
+Built with Tauri v2, Rust, and React.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Secrets detection** via Gitleaks integration
+- **Static analysis** via Semgrep integration
+- **Custom pattern matching** for AD/SCCM and SAP environments
+- **File system scanning** with allowlist-based filtering
+- **Severity classification** — Minimal, Low, Medium, High, Critical
+- Fully local — no cloud dependency, no telemetry
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Desktop shell | Tauri v2 |
+| Backend / scanning engine | Rust |
+| Frontend | React + JavaScript |
+| Secrets detection | Gitleaks |
+| Static analysis | Semgrep |
+
+---
+
+## Prerequisites
+
+- [Rust](https://www.rust-lang.org/tools/install)
+- [Node.js](https://nodejs.org/)
+- [Gitleaks](https://github.com/gitleaks/gitleaks) installed and on PATH
+- [Semgrep](https://semgrep.dev/docs/getting-started/) installed and on PATH
+
+---
+
+## Getting Started
+
+```bash
+# Clone the repo
+git clone https://github.com/CyberSteveon/SecurelyScoped.git
+cd SecurelyScoped
+
+# Install frontend dependencies
+npm install
+
+# Run in development mode
+npm run tauri dev
+```
+
+```powershell (windows)
+# Clone the repo
+git clone https://github.com/CyberSteveon/SecurelyScoped.git
+Set-Location SecurelyScoped
+
+# Install frontend dependencies
+npm install
+
+# Run in development mode
+npm run tauri dev
+```
+
+---
+
+## Project Structure
+
+
+SecurelyScoped/
+├── src/                  # React frontend
+├── src-tauri/
+│   ├── src/
+│   │   ├── main.rs       # Entry point only
+│   │   └── lib.rs        # All commands, structs, and Tauri setup
+│   ├── Cargo.toml
+│   └── Cargo.lock
+└── package.json
+
+
+---
+
+## Status
+
+Currently in active development.
+
+- [x] Phase 0 — Project scaffolding
+- [x] Phase 1 — Core types and Tauri command setup
+- [x] Phase 2 — File scanning engine (walkdir)
+- [ ] Phase 3 — Pattern-based vulnerability detection
+- [ ] Phase 4 — Gitleaks and Semgrep integration
+- [ ] Phase 5 — Frontend UI and results display
+
+---
+
+## Author
+
+Steven — [github.com/CyberSteveon](https://github.com/CyberSteveon)
